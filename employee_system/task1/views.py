@@ -1,8 +1,16 @@
+from django.http import HttpResponse
+from django.shortcuts import render
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .models import Ticket
 from .serializers import TicketSerializer
+
+
+
+def index(request):
+
+        return (render,'base.html')
 
 # Define a view function named ticket_list that accepts GET and POST requests
 @api_view(['GET', 'POST'])
@@ -37,6 +45,7 @@ def ticket_detail(request, pk):
         return Response(serializer.data)
     
     # Handle PUT request to update details of a specific ticket
+
     elif request.method == 'PUT':
         serializer = TicketSerializer(ticket, data=request.data)
         if serializer.is_valid():
@@ -48,3 +57,6 @@ def ticket_detail(request, pk):
     elif request.method == 'DELETE':
         ticket.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+    

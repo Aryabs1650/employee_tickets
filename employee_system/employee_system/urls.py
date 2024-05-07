@@ -1,12 +1,7 @@
-from django.urls import path
-from . import views
+from django.contrib import admin
+from django.urls import include, path
 
-# Define URL patterns for ticket-related endpoints
 urlpatterns = [
-    # Define URL pattern for listing all tickets and creating a new ticket
-    path('tickets/', views.ticket_list),
-    
-    # Define URL pattern for retrieving, updating, and deleting a specific ticket
-    # The <int:pk> part captures the primary key (pk) of the ticket as an integer
-    path('tickets/<int:pk>/', views.ticket_detail),
+    path("tickets/", include("task1.urls")),
+    path("admin/", admin.site.urls),
 ]
